@@ -1,0 +1,55 @@
+<div class="view_port">
+    <div class="polling_message">
+      Statistique sur un utilisateur git et ses dépôts 
+    </div>
+    <div class="cylon_eye"></div>
+  </div><br>
+<form>
+    <div class="form-group">
+        <label for="InputName1"> User </label>
+        <input type="text" class="form-control" id="InputName1" placeholder="User" [(ngModel)]="UserGit" [ngModelOptions]="{standalone: true}">  
+    </div>
+    <div class="form-group">
+        <label for="InputName2"> Repo </label>
+        <input type="text" class="form-control" id="InputName2" placeholder="Repo" [(ngModel)]="RepoGit" [ngModelOptions]="{standalone: true}">  
+    </div><br>
+    <button class="button" (click)="userGitHub()"> Valider </button>
+    <button class="button button2" (click)="repoLanguage()"> Language Repo </button>
+    <button class="button button3" (click)="repoContributors()"> Contributeur Repo </button>    
+    <br>
+</form>
+<table>
+    <td>
+        <tr>
+            <div *ngFor="let repository of repositories"  style="margin-top:5px;">
+                <strong>Name: </strong> {{repository.name}} <br>
+                <strong>Description: </strong> {{repository.description}} <br>
+                <strong>Url: </strong> <a href="{{repository.html_url}}" target="blank">{{repository.name}}</a>
+            </div>  
+        </tr>
+    </td>
+    <td>
+        <tr>
+            <td> 
+                <div *ngFor="let type of repoContrType"  style="margin-top:5px;">
+                    <strong>{{type}}</strong> : <br>
+                </div>               
+            </td>
+            <td>
+                <div *ngFor="let value of repoContrValue"  style="margin-top:5px;">
+                    {{value}} - Bytes<br>
+                </div>
+            </td>
+        </tr>
+    </td>
+    <td>
+        <div *ngFor="let depot of repoLang[0].weeks"  style="margin-top:5px;">
+            w : {{depot.w | json}} - Bytes<br>
+            a : {{depot.a | json}} - Bytes<br>
+            d : {{depot.d | json}} - Bytes<br>
+            c : {{depot.c | json}} - Bytes<br>
+        </div>             
+    </td>
+</table>
+
+
